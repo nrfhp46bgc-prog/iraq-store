@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#08090d">
+<title>IRAQ STORE | العراق ستور</title>
+<style>
+:root {
+  color-scheme: dark;
+  --bg:#08090d;
+  --card:#13151c;
+  --line:#252833;
+  --blue:#5995ff;
+  --muted:#969baa;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  padding:env(safe-area-inset-top) 16px calc(90px + env(safe-area-inset-bottom));
+}
+header{padding:24px 2px 20px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:53px;height:53px;border-radius:17px;
+  background:linear-gradient(145deg,#69a4ff,#2456cf);
+  display:grid;place-items:center;font-size:27px;
+  font-weight:900;box-shadow:0 5px 24px #2869d544;
+}
+h1{font-size:23px;margin:0;letter-spacing:1px}
+.subtitle{color:var(--muted);font-size:12px;margin-top:5px}
+.hero{
+  margin:8px 0 22px;padding:23px 20px;border-radius:25px;
+  background:linear-gradient(140deg,#19233b,#10121b 70%);
+  border:1px solid #29344d;
+}
+.tag{font-size:12px;color:#90b7ff}
+.hero h2{font-size:27px;line-height:1.5;margin:12px 0 5px}
+.hero p{color:#adb4c5;font-size:14px;line-height:1.8;margin:0}
+.search{
+  width:100%;margin:0 0 18px;padding:15px 17px;
+  border-radius:15px;border:1px solid var(--line);
+  background:#12141a;color:white;font-size:15px;outline:none;
+}
+.search:focus{border-color:var(--blue)}
+.categories{display:flex;gap:9px;overflow:auto;padding:0 0 20px}
+.chip{
+  flex-shrink:0;border:1px solid var(--line);border-radius:22px;
+  padding:10px 16px;background:#11131a;color:#c5c9d3;
+  font-size:13px;
+}
+.chip.active{background:#244d91;border-color:#5995ff;color:#fff}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:8px 0 14px}
+.section-title h3{font-size:19px;margin:0}
+.section-title span{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.app{
+  min-width:0;background:var(--card);border:1px solid var(--line);
+  border-radius:20px;padding:14px 12px 13px;
+}
+.app-icon{
+  width:59px;height:59px;border-radius:17px;display:grid;
+  place-items:center;font-size:29px;margin-bottom:12px;
+  background:linear-gradient(145deg,#292e3c,#191c26);
+}
+.app h4{font-size:15px;margin:0 0 7px;overflow-wrap:anywhere}
+.desc{font-size:12px;color:var(--muted);line-height:1.7;min-height:34px}
+.meta{font-size:10px;color:#aeb4c3;margin:9px 0}
+.download{
+  display:block;text-align:center;text-decoration:none;
+  background:#3478ed;color:white;font-weight:700;
+  padding:11px 5px;border-radius:12px;font-size:13px;
+}
+.download.disabled{background:#292c35;color:#b3b7c2}
+.empty{grid-column:1/-1;color:var(--muted);text-align:center;padding:30px}
+.note{color:#777e8e;font-size:11px;line-height:1.8;margin-top:22px}
+footer{
+  position:fixed;bottom:0;left:0;right:0;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  background:#0c0d12ee;border-top:1px solid #252833;
+  display:flex;justify-content:space-around;backdrop-filter:blur(16px);
+}
+footer a{color:#a9afbd;text-decoration:none;text-align:center;font-size:11px}
+footer b{display:block;font-size:19px;margin-bottom:4px}
+@media(min-width:600px){body{max-width:760px;margin:auto}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">ع</div>
+    <div>
+      <h1>IRAQ STORE</h1>
+      <div class="subtitle">العراق ستور · عالم تطبيقات الآيفون</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="tag">✦ متجر التطبيقات الخاص بك</div>
+  <h2>كل تطبيقاتك<br>بمكان واحد.</h2>
+  <p>تصفّح التطبيقات واختار اللي يناسبك بكل سهولة.</p>
+</section>
+
+<input id="search" class="search" type="search"
+placeholder="⌕ ابحث عن تطبيق..." aria-label="البحث عن تطبيق">
+
+<div class="categories" id="categories">
+  <button class="chip active" data-cat="الكل">الكل</button>
+  <button class="chip" data-cat="اجتماعي">اجتماعي</button>
+  <button class="chip" data-cat="أدوات">أدوات</button>
+  <button class="chip" data-cat="ألعاب">ألعاب</button>
+</div>
+
+<div class="section-title">
+  <h3>التطبيقات</h3>
+  <span id="count">0 تطبيق</span>
+</div>
+
+<main class="grid" id="apps"></main>
+
+<p class="note">
+  IRAQ STORE © 2026<br>
+  تُعرض التطبيقات وروابطها من إدارة المتجر. يجب أن تكون الملفات
+  مرخّصة ومصرّحاً بتوزيعها، وقد يحتاج تثبيت IPA إلى توقيع متوافق
+  مع جهازك وحسابك وفق شروط Apple.
+</p>
+
+<footer>
+  <a href="#"><b>⌂</b>الرئيسية</a>
+  <a href="#categories"><b>▦</b>التصنيفات</a>
+  <a href="#search" onclick="document.getElementById('search').focus()"><b>⌕</b>البحث</a>
+</footer>
+
+<script>
+/* أضف تطبيقاتك هنا بعد الحصول على روابط تنزيل مصرّح بها.
+   اترك الرابط فارغاً حتى تضيف الرابط الصحيح. */
+const apps = [
+  {
+    name:"تطبيق تجريبي",
+    icon:"📱",
+    category:"أدوات",
+    description:"مكان مخصص لإضافة أول تطبيق إلى متجرك.",
+    version:"1.0",
+    size:"—",
+    url:""
+  },
+  {
+    name:"تطبيق اجتماعي",
+    icon:"💬",
+    category:"اجتماعي",
+    description:"أضف وصف التطبيق ورابط تنزيله هنا.",
+    version:"1.0",
+    size:"—",
+    url:""
+  },
+  {
+    name:"لعبة تجريبية",
+    icon:"🎮",
+    category:"ألعاب",
+    description:"بطاقة جاهزة لإضافة لعبة مرخّص بتوزيعها.",
+    version:"1.0",
+    size:"—",
+    url:""
+  },
+  {
+    name:"أداة مفيدة",
+    icon:"⚙️",
+    category:"أدوات",
+    description:"خصص هذه البطاقة باسم التطبيق الحقيقي.",
+    version:"1.0",
+    size:"—",
+    url:""
+  }
+];
+
+let selectedCategory="الكل";
+const container=document.getElementById("apps");
+const search=document.getElementById("search");
+
+function render(){
+  const term=search.value.trim().toLowerCase();
+  const filtered=apps.filter(app=>{
+    const matchesCategory=selectedCategory==="الكل"||app.category===selectedCategory;
+    const matchesTerm=(app.name+" "+app.description+" "+app.category).toLowerCase().includes(term);
+    return matchesCategory&&matchesTerm;
+  });
+  document.getElementById("count").textContent=filtered.length+" تطبيق";
+  container.innerHTML="";
+  if(!filtered.length){
+    container.innerHTML='<div class="empty">ما لكينا تطبيق يطابق بحثك.</div>';
+    return;
+  }
+  filtered.forEach(app=>{
+    const card=document.createElement("article");
+    card.className="app";
+    const icon=document.createElement("div");
+    icon.className="app-icon";
+    icon.textContent=app.icon;
+    const title=document.createElement("h4");
+    title.textContent=app.name;
+    const desc=document.createElement("div");
+    desc.className="desc";
+    desc.textContent=app.description;
+    const meta=document.createElement("div");
+    meta.className="meta";
+    meta.textContent=app.category+" · إصدار "+app.version;
+    const link=document.createElement("a");
+    link.className="download";
+    if(app.url && /^https:\/\//i.test(app.url)){
+      link.href=app.url;
+      link.target="_blank";
+      link.rel="noopener noreferrer";
+      link.textContent="عرض / تنزيل";
+    }else{
+      link.href="#";
+      link.classList.add("disabled");
+      link.textContent="قريباً";
+      link.addEventListener("click",e=>{
+        e.preventDefault();
+        alert("رابط التنزيل لم يُضف بعد.");
+      });
+    }
+    card.append(icon,title,desc,meta,link);
+    container.appendChild(card);
+  });
+}
+document.querySelectorAll(".chip").forEach(button=>{
+  button.addEventListener("click",()=>{
+    selectedCategory=button.dataset.cat;
+    document.querySelectorAll(".chip").forEach(b=>b.classList.toggle("active",b===button));
+    render();
+  });
+});
+search.addEventListener("input",render);
+render();
+</script>
+</body>
+</html>
